@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 
-const props = defineProps({
+defineProps({
   name: {
     type: String,
     default: 'Default Plan',
@@ -12,7 +12,7 @@ const props = defineProps({
 <template>
   <div class="plan">
     <div class="description">
-      <span class="title"> {{ props.name }} </span>
+      <span class="title"> {{ name }} </span>
     </div>
   </div>
 </template>
