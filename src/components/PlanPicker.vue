@@ -11,6 +11,7 @@ function handleSelectPlan(name: string) {
 
 <template>
   <div class="plans">
+    {{ selectedPlan }}
     <CoffeePlan
       v-for="plan in plans"
       :key="plan"
@@ -19,5 +20,4 @@ function handleSelectPlan(name: string) {
       @selectedPlan="handleSelectPlan"
     />
   </div>
-  {{ selectedPlan }}
 </template>
