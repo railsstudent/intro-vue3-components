@@ -20,13 +20,13 @@ function addPlan() {
 </script>
 
 <template>
-  <form class="add-plan-form" @submit.prevent="addPlan">
-    <input v-model.trim="newPlan" type="text" placeholder="Add a new plan" />
-    <button class="btn btn-primary" type="submit" :disabled="newPlan.length < 5">
-      Add Plan
-    </button>
-  </form>
   <div class="plans">
+    <form class="add-plan-form" @submit.prevent="addPlan">
+      <input v-model.trim="newPlan" type="text" placeholder="Add a new plan" />
+      <button class="btn btn-primary" type="submit" :disabled="newPlan.length < 5">
+        Add Plan
+      </button>
+    </form>
     {{ selectedPlan }}
     <CoffeePlan
       v-for="plan in plans"
@@ -47,7 +47,6 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
 }
 
 .add-plan-form input {
