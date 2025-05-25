@@ -16,7 +16,7 @@ function addPlan(newPlan: string) {
 
 <template>
   <div class="plans">
-    <AddCoffeePlan @newCoffeePlan="addPlan" />
+    <AddCoffeePlan @newCoffeePlan="(plan) => plans.push(plan)" />
     {{ selectedPlan }}
     <CoffeePlan
       v-for="plan in plans"
