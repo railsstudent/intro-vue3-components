@@ -7,9 +7,25 @@ const selectedPlan = ref('')
 function handleSelectPlan(name: string) {
   selectedPlan.value = name
 }
+
+const newPlan = ref('');
+function addPlan() {
+  if (!newPlan.value) {
+    return;
+  }
+
+  plans.value.push(newPlan.value);
+  newPlan.value = '';
+} 
 </script>
 
 <template>
+  <form class="add-plan-form" @submit.prevent="addPlan">
+    <input v-model.trim="newPlan" type="text" placeholder="Add a new plan" />
+    <button class="btn btn-primary" type="submit" :disabled="newPlan.length < 5">
+      Add Plan
+    </button>
+  </form>
   <div class="plans">
     {{ selectedPlan }}
     <CoffeePlan
@@ -21,3 +37,29 @@ function handleSelectPlan(name: string) {
     />
   </div>
 </template>
+
+<style scoped>
+input {
+  padding: 0.5rem 0.75rem;
+}
+
+.add-plan-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.add-plan-form input {
+  width: 70%;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f5f8;
+  color: #606f7b;
+  padding: 0.5rem 0.75rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  margin: 0.5rem 0;
+}
+</style>
