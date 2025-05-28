@@ -8,10 +8,6 @@ const selectedPlan = ref('')
 function handleSelectPlan(name: string) {
   selectedPlan.value = name
 }
-
-function addPlan(newPlan: string) {
-  plans.value.push(newPlan);
-} 
 </script>
 
 <template>
