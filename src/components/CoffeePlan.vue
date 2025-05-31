@@ -21,6 +21,7 @@ function selectPlan() {
 
 <template>
   <div class="plan" @click="selectPlan" :class="{ 'active-plan': selected }">
+    <slot v-if="selected" name="icon" />
     <div class="description">
       <span class="title"> {{ name }} </span>
     </div>

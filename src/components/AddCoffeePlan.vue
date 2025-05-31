@@ -5,6 +5,8 @@ const emit = defineEmits<{
   (e: 'newCoffeePlan', name: string): void
 }>();
 
+const hover = ref(false);
+
 const newPlan = ref('');
 function addPlan() {
     const trimmedPlan = newPlan.value.trim();
@@ -20,8 +22,10 @@ function addPlan() {
 <template>    
     <form class="add-plan-form" @submit.prevent="addPlan">
       <input v-model.trim="newPlan" type="text" placeholder="Add a new plan" />
-      <button class="btn btn-primary" type="submit" :disabled="newPlan.length < 5">
-        Add Plan
+      <button class="btn btn-primary" type="submit" :disabled="newPlan.length < 5"
+        @mouseenter="hover = true" @mouseleave="hover = false"
+      >
+        <slot name="btn" :hover="hover" />
       </button>
     </form>    
 </template>
