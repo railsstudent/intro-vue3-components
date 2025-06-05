@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Icon } from '@iconify/vue'
-import CoffeePlan from './CoffeePlan.vue'
-import AddCoffeePlan from './AddCoffeePlan.vue'
+import { Icon } from '@iconify/vue';
+import { ref } from 'vue';
+import AddCoffeePlan from './AddCoffeePlan.vue';
+import CoffeePlan from './CoffeePlan.vue';
 const plans = ref(['The Single', 'The Curious', 'The Addict', 'The Hacker'])
 
 const selectedPlan = ref('')
@@ -13,7 +13,6 @@ function handleSelectPlan(name: string) {
 function isSelected(plan: string) {
   return selectedPlan.value === plan
 }
-
 </script>
 
 <template>
@@ -31,13 +30,11 @@ function isSelected(plan: string) {
       :selected="isSelected(plan)"
       @selectedPlan="handleSelectPlan"
     >
-      <template #icon>
-        <div>
-          <Icon icon="material-symbols:coffee-maker-outline" width="48" height="48" />
-          <Icon icon="material-symbols:coffee-outline" width="48" height="48" />
-        </div>
+      <template #icon v-if="isSelected(plan)">
+        <Icon icon="material-symbols:coffee-maker-outline" width="48" height="48" />
+        <Icon icon="material-symbols:coffee-outline" width="48" height="48" />
       </template>
     </CoffeePlan>
 
-  </div>
+  </div>  
 </template>
