@@ -30,11 +30,11 @@ function isSelected(plan: string) {
       :selected="isSelected(plan)"
       @selectedPlan="handleSelectPlan"
     >
-      <template #icon v-if="isSelected(plan)">
-        <Icon icon="material-symbols:coffee-maker-outline" width="48" height="48" />
-        <Icon icon="material-symbols:coffee-outline" width="48" height="48" />
+      <template #icon="{ iconsNames }" v-if="isSelected(plan)">
+        <div>
+          <Icon v-for="icon in iconsNames" :key="icon" :icon="icon" width="48" height="48" />
+        </div>        
       </template>
     </CoffeePlan>
-
   </div>  
 </template>

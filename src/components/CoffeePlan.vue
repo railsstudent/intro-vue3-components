@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const props = defineProps({
   name: {
     type: String,
@@ -17,13 +19,19 @@ const emit = defineEmits<{
 function selectPlan() {
   emit('selectedPlan', props.name)
 }
+
+const iconsNames = computed(() => {
+		return props.name.startsWith('The')  ? ['ic:outline-coffee', 'ic:outline-coffee-maker'] : [
+			'ic:outline-emoji-food-beverage', 'ic:outline-fastfood'
+		];
+	});
 </script>
 
 <template>
   <div class="plan" @click="selectPlan" :class="{ 'active-plan': selected }">
-    <div v-if="$slots.icon">
-      <slot name="icon" />
-    </div>
+    <template v-if="$slots.icon">
+      <slot name="icon" :iconsNames="iconsNames"  />
+    </template>
     <div class="description">
       <span class="title"> {{ name }} </span>
     </div>
