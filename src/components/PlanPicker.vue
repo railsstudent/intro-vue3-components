@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import AddCoffeePlan from './AddCoffeePlan.vue';
 import CoffeePlan from './CoffeePlan.vue';
 const plans = ref(['The Single', 'The Curious', 'The Addict', 'The Hacker', 'Vibe Coder'])
@@ -13,12 +13,6 @@ function handleSelectPlan(name: string) {
 function isSelected(plan: string) {
   return selectedPlan.value === plan
 }
-
-const iconsNames = computed(() => {
-		return selectedPlan.value.startsWith('The')  ? ['ic:outline-coffee', 'ic:outline-coffee-maker'] : [
-			'ic:outline-emoji-food-beverage', 'ic:outline-fastfood'
-		];
-	});
 </script>
 
 <template>
@@ -38,13 +32,14 @@ const iconsNames = computed(() => {
     >
       <template #coffee v-if="isSelected(plan) && plan.startsWith('The')">
         <div class="coffee">
-          <Icon class="icon" v-for="icon in iconsNames" :key="icon" :icon="icon" />
+          <Icon class="icon" v-for="icon in ['ic:outline-coffee', 'ic:outline-coffee-maker']" 
+            :key="icon" :icon="icon" />
         </div>
       </template>
   
       <template #beverage v-if="isSelected(plan) && !plan.startsWith('The')">
         <div class="beverage">
-          <Icon class="icon" v-for="icon in iconsNames" :key="icon" :icon="icon" />
+          <Icon class="icon" v-for="icon in ['ic:outline-emoji-food-beverage', 'ic:outline-fastfood']" :key="icon" :icon="icon" />
         </div>        
       </template>
     </CoffeePlan>
